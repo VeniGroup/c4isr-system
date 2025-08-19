@@ -16,6 +16,16 @@ This project includes a complete CI/CD pipeline with:
 
 **Pipeline Status**: [View Latest Run](https://github.com/DanieleNTCentral/c4isr-system/actions)
 
+## 🎯 **Setup Status: 80% Complete**
+
+**Final steps remaining for 100% production readiness:**
+- [ ] Configure branch protection rules
+- [ ] Set up deployment environments
+- [ ] Add repository topics
+- [ ] Test complete workflow
+
+**Quick Setup Guide**: [QUICK_SETUP_REFERENCE.md](QUICK_SETUP_REFERENCE.md)
+
 ## System Overview
 
 The C4ISR system provides real-time military operations management capabilities including:
