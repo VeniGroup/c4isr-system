@@ -1,6 +1,20 @@
 # C4ISR System
 
+[![CI/CD Pipeline](https://github.com/DanieleNTCentral/c4isr-system/workflows/CI/CD%20Pipeline/badge.svg)](https://github.com/DanieleNTCentral/c4isr-system/actions)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 A comprehensive Command, Control, Communications, Computers, Intelligence, Surveillance, and Reconnaissance system built with microservices architecture.
+
+## 🚀 **CI/CD Status**
+
+This project includes a complete CI/CD pipeline with:
+- ✅ **Automated Testing** (Backend & Frontend)
+- ✅ **Security Scanning** (CodeQL)
+- ✅ **Docker Image Building**
+- ✅ **Multi-Environment Deployment**
+- ✅ **Quality Gates** and automated validation
+
+**Pipeline Status**: [View Latest Run](https://github.com/DanieleNTCentral/c4isr-system/actions)
 
 ## System Overview
 
