@@ -1,0 +1,88 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+scrape_configs:
+  # Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # C4ISR API Gateway (Kong)
+  - job_name: 'kong'
+    static_configs:
+      - targets: ['api-gateway:8001']
+    metrics_path: /metrics
+    scrape_interval: 10s
+
+  # Device Management Service
+  - job_name: 'device-service'
+    static_configs:
+      - targets: ['device-service:8002']
+    metrics_path: /metrics
+    scrape_interval: 10s
+
+  # Intelligence Service
+  - job_name: 'intelligence-service'
+    static_configs:
+      - targets: ['intelligence-service:8003']
+    metrics_path: /metrics
+    scrape_interval: 10s
+
+  # Communication Service
+  - job_name: 'communication-service'
+    static_configs:
+      - targets: ['communication-service:8004']
+    metrics_path: /metrics
+    scrape_interval: 10s
+
+  # Air Support Service
+  - job_name: 'air-support-service'
+    static_configs:
+      - targets: ['air-support-service:8005']
+    metrics_path: /metrics
+    scrape_interval: 10s
+
+  # Map Service
+  - job_name: 'map-service'
+    static_configs:
+      - targets: ['map-service:8006']
+    metrics_path: /metrics
+    scrape_interval: 10s
+
+  # User Management Service
+  - job_name: 'user-service'
+    static_configs:
+      - targets: ['user-service:8007']
+    metrics_path: /metrics
+    scrape_interval: 10s
+
+  # PostgreSQL Database
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres:5432']
+    metrics_path: /metrics
+    scrape_interval: 30s
+
+  # Redis
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis:6379']
+    metrics_path: /metrics
+    scrape_interval: 30s
+
+  # Node Exporter (if running on hosts)
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['localhost:9100']
+    scrape_interval: 30s
+
+  # Docker containers
+  - job_name: 'docker'
+    static_configs:
+      - targets: ['localhost:9323']
+    scrape_interval: 30s
