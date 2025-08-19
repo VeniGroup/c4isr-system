@@ -1,0 +1,114 @@
+version: '3.8'
+
+# Development environment overrides
+# Use with: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+services:
+  # Device Management Service - Development
+  device-service:
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=DEBUG
+      - RELOAD=true
+    volumes:
+      - ./backend:/app
+      - /app/__pycache__
+    command: uvicorn device-service.main:app --host 0.0.0.0 --port 8002 --reload --log-level debug
+
+  # Intelligence Service - Development
+  intelligence-service:
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=DEBUG
+      - RELOAD=true
+    volumes:
+      - ./backend:/app
+      - /app/__pycache__
+    command: uvicorn intelligence-service.main:app --host 0.0.0.0 --port 8003 --reload --log-level debug
+
+  # Communication Service - Development
+  communication-service:
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=DEBUG
+      - RELOAD=true
+    volumes:
+      - ./backend:/app
+      - /app/__pycache__
+    command: uvicorn communication-service.main:app --host 0.0.0.0 --port 8004 --reload --log-level debug
+
+  # Air Support Service - Development
+  air-support-service:
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=DEBUG
+      - RELOAD=true
+    volumes:
+      - ./backend:/app
+      - /app/__pycache__
+    command: uvicorn air-support-service.main:app --host 0.0.0.0 --port 8005 --reload --log-level debug
+
+  # Map Service - Development
+  map-service:
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=DEBUG
+      - RELOAD=true
+    volumes:
+      - ./backend:/app
+      - /app/__pycache__
+    command: uvicorn map-service.main:app --host 0.0.0.0 --port 8006 --reload --log-level debug
+
+  # User Management Service - Development
+  user-service:
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=DEBUG
+      - RELOAD=true
+    volumes:
+      - ./backend:/app
+      - /app/__pycache__
+    command: uvicorn user-service.main:app --host 0.0.0.0 --port 8007 --reload --log-level debug
+
+  # Frontend - Development
+  frontend:
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm start
+
+  # PostgreSQL - Development
+  postgres:
+    environment:
+      - POSTGRES_PASSWORD=c4isr_password_dev
+    volumes:
+      - ./data/postgres_dev:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+  # Redis - Development
+  redis:
+    command: redis-server --appendonly yes --loglevel verbose
+    volumes:
+      - ./data/redis_dev:/data
+
+  # Prometheus - Development
+  prometheus:
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=24h'
+      - '--web.enable-lifecycle'
+      - '--log.level=debug'
+
+  # Grafana - Development
+  grafana:
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_LOG_LEVEL=debug
+      - GF_ANALYTICS_REPORTING_ENABLED=false
+      - GF_ANALYTICS_CHECK_FOR_UPDATES=false
